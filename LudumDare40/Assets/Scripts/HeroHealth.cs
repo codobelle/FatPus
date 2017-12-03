@@ -23,6 +23,8 @@ public class HeroHealth : MonoBehaviour {
         {
             StartCoroutine(WaitForDie());
             CameraMovement.moveSpeed = 0.0f;
+            hero.GetComponent<HeroMovement>().moveSpeed = 0.0f;
+            hero.GetComponent<Transform>().Rotate(hero.GetComponent<Transform>().rotation.x, hero.GetComponent<Transform>().rotation.y, 180);
             print("Leg");
         }
 
@@ -30,8 +32,7 @@ public class HeroHealth : MonoBehaviour {
         {
             Destroy(coll.gameObject);
 
-            hero.GetComponent<HeroMovement>().moveSpeed -= 0.5f;
-            CameraMovement.moveSpeed -= 0.5f;
+            hero.GetComponent<HeroMovement>().moveSpeedy -= 0.5f;
 
             if (nrMouse % 2 == 0 && nrMouse != 0)
             {

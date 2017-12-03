@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HeroMovement : MonoBehaviour {
-    public float moveSpeed;
+    public float moveSpeed, moveSpeedy;
     Transform character;
     float vertical;
     // Use this for initialization
@@ -20,13 +20,12 @@ public class HeroMovement : MonoBehaviour {
 
         if (vertical > 0f)
         {
-            character.Translate(Vector2.up * Time.deltaTime * moveSpeed);
+            character.Translate(Vector2.up * Time.deltaTime * moveSpeedy);
         }
 
         if (vertical < 0f)
         {
-            character.Translate(Vector2.down * Time.deltaTime * moveSpeed);
-            print(Vector2.down * moveSpeed);
+            character.Translate(Vector2.down * Time.deltaTime * moveSpeedy);
         }
     }
 }
