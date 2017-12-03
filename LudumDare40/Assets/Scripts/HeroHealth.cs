@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HeroHealth : MonoBehaviour {
     
@@ -10,13 +11,8 @@ public class HeroHealth : MonoBehaviour {
     int nrOfSprite = 0;
     public Sprite[] sprites;
     public GameObject hero;
-    // Use this for initialization
-    void Start()
-    {
-    }
-    private void Update()
-    {
-    }
+    public Text mouseScoreUI;
+    public GameObject deathScreen;
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.CompareTag("Enemy"))
@@ -25,6 +21,7 @@ public class HeroHealth : MonoBehaviour {
             CameraMovement.moveSpeed = 0.0f;
             hero.GetComponent<HeroMovement>().moveSpeed = 0.0f;
             hero.GetComponent<Transform>().Rotate(hero.GetComponent<Transform>().rotation.x, hero.GetComponent<Transform>().rotation.y, 180);
+            deathScreen.SetActive(true);
             print("Leg");
         }
 
@@ -32,7 +29,7 @@ public class HeroHealth : MonoBehaviour {
         {
             Destroy(coll.gameObject);
 
-            hero.GetComponent<HeroMovement>().moveSpeedy -= 0.5f;
+            hero.GetComponent<HeroMovement>().moveSpeedy -= 0.4f;
 
             if (nrMouse % 2 == 0 && nrMouse != 0)
             {
@@ -40,6 +37,7 @@ public class HeroHealth : MonoBehaviour {
                 nrOfSprite++;
             }
             nrMouse++;
+            mouseScoreUI.text = nrMouse.ToString();
         }
     }
     IEnumerator WaitForDie()
