@@ -1,25 +1,49 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HeroHealth : MonoBehaviour {
     
-    BoxCollider2D bc2d;
+    public int waitingDie;
+    int nrMouse = 0;
+    int nrOfSprite = 0;
+    public Sprite[] sprites;
+    public GameObject hero;
     // Use this for initialization
     void Start()
     {
-        bc2d = GetComponent<BoxCollider2D>();
-
     }
-
+    private void Update()
+    {
+    }
     void OnCollisionEnter2D(Collision2D coll)
     {
-        print("Mouse");
         if (coll.gameObject.CompareTag("Enemy"))
         {
+            StartCoroutine(WaitForDie());
+            CameraMovement.moveSpeed = 0.0f;
             print("Leg");
         }
+
         if (coll.gameObject.CompareTag("Mouse"))
-            print("Mouse");
+        {
+            Destroy(coll.gameObject);
+
+            hero.GetComponent<HeroMovement>().moveSpeed -= 0.5f;
+            CameraMovement.moveSpeed -= 0.5f;
+
+            if (nrMouse % 2 == 0 && nrMouse != 0)
+            {
+                hero.GetComponent<SpriteRenderer>().sprite = sprites[nrOfSprite];
+                nrOfSprite++;
+            }
+            nrMouse++;
+        }
+    }
+    IEnumerator WaitForDie()
+    {
+        yield return new WaitForSeconds(waitingDie);
+        SceneManager.LoadScene("scene1");
     }
 }
