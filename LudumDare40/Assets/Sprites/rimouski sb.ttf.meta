@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 7727547782433d74ab44fee8deb084e7
+timeCreated: 1512333969
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Rimouski
+  fontNames:
+  - Rimouski
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
